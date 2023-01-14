@@ -7,17 +7,17 @@ import AdminLayout from '@/Layouts/AdminLayout.vue'
 import { useForm } from '@inertiajs/inertia-vue3';
 
 const props = defineProps({
-    course: Object,
+    subject: Object,
 })
 
 let form = useForm({
-    code: props.course.code,
-    descriptive_title: props.course.descriptive_title,
-    unit: props.course.unit,
+    code: props.subject.code,
+    descriptive_title: props.subject.descriptive_title,
+    unit: props.subject.unit,
 });
 
 const submitHandler = () => {
-    form.put(route('admin.courses.update', props.course.id))
+    form.put(route('admin.subjects.update', props.subject.id))
 }
 </script>
 
@@ -25,7 +25,7 @@ const submitHandler = () => {
     <AdminLayout title="Courses">
         <div class="grid gap-4">
             <h1 class="text-xl uppercase font-semibold text-gray-700">
-                Edit Course
+                Edit Subject
             </h1>
             <div class="p-5 w-1/2 border bg-gray-100  rounded-lg">
                 <form @submit.prevent="submitHandler" class="sm:grid sm:grid-cols-2  gap-4 ">
@@ -43,7 +43,7 @@ const submitHandler = () => {
                         <PrimaryButton :loading-on="form.processing" type="submit">
                             Submit
                         </PrimaryButton>
-                        <SecondaryButtonLink :href="route('admin.courses')">
+                        <SecondaryButtonLink :href="route('admin.subjects')">
                             Cancel
                         </SecondaryButtonLink>
                     </div>

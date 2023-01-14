@@ -16,12 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-            YearLevelSeeder::class
+            YearLevelSeeder::class,
         ]);
 
-        if(app()->environment() === 'local'){
+        if (app()->environment() === 'local') {
             $this->call([
-                DevSeeder::class
+                DevSeeder::class,
             ]);
         }
     }

@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Program>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Subject>
  */
-class ProgramFactory extends Factory
+class SubjectFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,8 +18,9 @@ class ProgramFactory extends Factory
     public function definition()
     {
         return [
-            'abbreviation' => strtoupper(Str::random(rand(4, 5))),
-            'name' => fake()->sentence(3, true),
+            'code' => strtoupper(Str::random(rand(4, 5))),
+            'descriptive_title' => fake()->sentence(3, true),
+            'unit' => 3,
         ];
     }
 }

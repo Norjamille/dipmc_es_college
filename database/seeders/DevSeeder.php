@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Course;
 use App\Models\Program;
+use App\Models\Subject;
 use Illuminate\Database\Seeder;
-use Database\Factories\ProgramFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DevSeeder extends Seeder
 {
@@ -18,10 +16,10 @@ class DevSeeder extends Seeder
     public function run()
     {
         Program::create([
-            'abbreviation'=>'BSIT',
-            'name'=>'Bachelor of Science in Information Technology'
+            'abbreviation' => 'BSIT',
+            'name' => 'Bachelor of Science in Information Technology',
         ]);
         Program::factory()->count(100)->create();
-        Course::factory()->count(100)->create();
+        Subject::factory()->count(100)->create();
     }
 }

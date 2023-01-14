@@ -1,6 +1,6 @@
 
 <script setup>
-import AdminStaticSidebar from '@/Components/AdminStaticSidebar.vue'
+import StaffStaticSidebar from '@/Components/StaffStaticSidebar.vue';
 import ToastList from '@/Components/ToastList.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 let props = defineProps({
@@ -147,7 +147,7 @@ let props = defineProps({
         </div>
 
         <!-- Static sidebar for desktop -->
-        <AdminStaticSidebar />
+        <StaffStaticSidebar />
         <!-- Main column -->
         <div class="flex flex-col lg:pl-64">
             <!-- Search header -->

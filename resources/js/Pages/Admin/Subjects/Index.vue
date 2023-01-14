@@ -13,14 +13,14 @@ import { ref, watch } from 'vue';
 import { Inertia } from '@inertiajs/inertia';
 import EditButton from '@/Components/EditButton.vue';
 const props = defineProps({
-    courses: Object,
+    subjects: Object,
     filters: Object
 })
 
 let search = ref(props.filters.search)
 
 watch(search, debounce((searchQuery) => {
-    Inertia.get(route('admin.courses'), { search: searchQuery }, {
+    Inertia.get(route('admin.subjects'), { search: searchQuery }, {
         preserveScroll: true,
         preserveState: true,
         replace: true
@@ -29,47 +29,47 @@ watch(search, debounce((searchQuery) => {
 </script>
 
 <template>
-    <AdminLayout title="Courses">
+    <AdminLayout title="Subjects">
         <div class="grid gap-4">
             <h1 class="text-xl uppercase font-semibold text-gray-700">
-                Courses List
+                Subjects List
             </h1>
             <div class="flex justify-between">
                 <div class="flex">
                     <SearchInput v-model="search" />
                 </div>
                 <div class="flex">
-                    <PrimaryButtonLink :href="route('admin.courses.create')">
+                    <PrimaryButtonLink :href="route('admin.subjects.create')">
                         <PlusIcon class="h-6 w-6 mr-2" />
-                        Create Course
+                        Create Subject
                     </PrimaryButtonLink>
                 </div>
             </div>
             <Table>
                 <template #header>
-                    <Thead>Code</Thead>
+                    <Thead>subject Code</Thead>
                     <Thead>Descriptive Title</Thead>
                     <Thead>No. of Unit</Thead>
                     <Thead>Action</Thead>
                 </template>
                 <template #body>
-                    <Trow v-for="course in courses.data" :key="course.id">
-                        <Tdata>{{ course.code }}</Tdata>
-                        <Tdata>{{ course.descriptive_title }}</Tdata>
-                        <Tdata>{{ course.unit }}</Tdata>
+                    <Trow v-for="subject in subjects.data" :key="subject.id">
+                        <Tdata>{{ subject.code }}</Tdata>
+                        <Tdata>{{ subject.descriptive_title }}</Tdata>
+                        <Tdata>{{ subject.unit }}</Tdata>
                         <Tdata>
-                            <EditButton :href="route('admin.courses.edit', { course: course.id })" />
+                            <EditButton :href="route('admin.subjects.edit', { subject: subject.id })" />
                         </Tdata>
                     </Trow>
-                    <Trow v-if="courses.data.length === 0">
+                    <Trow v-if="subjects.data.length === 0">
                         <Tdata colspan="3" class=" text-center">
                             No record found
                         </Tdata>
                     </Trow>
                 </template>
                 <template #footer>
-                    <Pagination :prev-url="courses.prev_page_url" :next-url="courses.next_page_url" :from="courses.from"
-                        :to="courses.to" :total="courses.total" />
+                    <Pagination :prev-url="subjects.prev_page_url" :next-url="subjects.next_page_url"
+                        :from="subjects.from" :to="subjects.to" :total="subjects.total" />
                 </template>
             </Table>
         </div>

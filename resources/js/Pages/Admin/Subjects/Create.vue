@@ -13,7 +13,7 @@ let form = useForm({
 });
 
 const submitHandler = () => {
-    form.post(route('admin.courses.store'))
+    form.post(route('admin.subjects.store'))
 }
 </script>
 
@@ -39,7 +39,7 @@ const submitHandler = () => {
                         <PrimaryButton :loading-on="form.processing" type="submit">
                             Submit
                         </PrimaryButton>
-                        <SecondaryButtonLink :href="route('admin.courses')">
+                        <SecondaryButtonLink :href="route('admin.subjects')">
                             Cancel
                         </SecondaryButtonLink>
                     </div>

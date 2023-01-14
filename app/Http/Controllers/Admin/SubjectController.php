@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Course;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class CourseController extends Controller
+class SubjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +16,14 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/Courses/Index',[
-            'courses'=>Course::query()
-                    ->when(request()->input('search'),function($query){
-                        $query->where('code','like','%'.request()->input('search').'%');
+        return Inertia::render('Admin/Subjects/Index', [
+            'subjects' => Subject::query()
+                    ->when(request()->input('search'), function ($query) {
+                        $query->where('code', 'like', '%'.request()->input('search').'%');
                     })
                     ->paginate(10)
                     ->withQueryString(),
-            'filters'=>request()->only(['search'])
+            'filters' => request()->only(['search']),
         ]);
     }
 
@@ -34,7 +34,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Admin/Courses/Create');
+        return Inertia::render('Admin/Subjects/Create');
     }
 
     /**
@@ -46,16 +46,16 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'code'=>'required|unique:courses,code',
-            'descriptive_title'=>'required',
-            'unit'=>'required|numeric|min:1',
+            'code' => 'required|unique:subjects,code',
+            'descriptive_title' => 'required',
+            'unit' => 'required|numeric|min:1',
         ]);
 
-        Course::create($data);
+        Subject::create($data);
 
-        return redirect()->route('admin.courses')->with('toast',[
-            'type'=>'success',
-            'message'=>'New course has been added'
+        return redirect()->route('admin.subjects')->with('toast', [
+            'type' => 'success',
+            'message' => 'New course has been added',
         ]);
     }
 
@@ -78,8 +78,8 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        return Inertia::render('Admin/Courses/Edit',[
-            'course'=>Course::findOrFail($id)
+        return Inertia::render('Admin/Subjects/Edit', [
+            'subject' => Subject::findOrFail($id),
         ]);
     }
 
@@ -90,19 +90,19 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, Subject $subject)
     {
         $data = $request->validate([
-            'code'=>'required|unique:courses,code,'.$course->id,
-            'descriptive_title'=>'required',
-            'unit'=>'required|numeric|min:1',
+            'code' => 'required|unique:subjects,code,'.$subject->id,
+            'descriptive_title' => 'required',
+            'unit' => 'required|numeric|min:1',
         ]);
 
-        $course->update($data);
+        $subject->update($data);
 
-        return redirect()->route('admin.courses')->with('toast',[
-            'type'=>'success',
-            'message'=>'Course has been updated successfully'
+        return redirect()->route('admin.subjects')->with('toast', [
+            'type' => 'success',
+            'message' => 'Subject has been updated successfully',
         ]);
     }
 

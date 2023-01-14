@@ -10,19 +10,14 @@ import {
 const navigations = [
     {
         name: 'Dashboard',
-        url: route('admin.dashboard'),
+        url: route('staff.dashboard'),
         icon: HomeIcon,
     },
     {
-        name: 'Programs',
-        url: route('admin.programs'),
+        name: 'Enrollment',
+        url: route('staff.enrollment'),
         icon: BookmarkIcon
     },
-    {
-        name: 'Subjects',
-        url: route('admin.subjects'),
-        icon: BookOpenIcon
-    }
 ];
 </script>
 
